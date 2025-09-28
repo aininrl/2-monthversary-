@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 2 Months Anniversary 💕</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    body {
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .heart {
+      position: absolute;
+      color: rgba(255,255,255,0.7);
+      font-size: 20px;
+      animation: float 6s linear infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+      30% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    .container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    .slide img {
+      width: 180px;
+      height: 180px;
+      border-radius: 20px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 5px solid #fff;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      animation: zoomIn 2s ease;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .slide img:hover {
+      transform: scale(1.05);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      animation: fadeUp 2s ease;
+    }
+
+    p {
+      font-size: 1.1rem;
+      max-width: 80%;
+      line-height: 1.6;
+      animation: fadeUp 2.5s ease;
+    }
+
+    .controls {
+      position: absolute;
+      bottom: 30px;
+      display: flex;
+      gap: 15px;
+    }
+
+    button {
+      background: rgba(255,255,255,0.85);
+      color: #333;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #fff;
+      transform: scale(1.05);
+    }
+
+    .gallery-btn {
+      margin-top: 15px;
+      background: #fff;
+      color: #ff6b81;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .gallery-btn:hover {
+      background: #ffe0e6;
+      transform: scale(1.05);
+    }
+
+    .music-control {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.85);
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      color: #333;
+    }
+
+    /* Modal galeri */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .modal img {
+      max-width: 80%;
+      max-height: 70%;
+      border-radius: 15px;
+      border: 4px solid #fff;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      margin-bottom: 20px;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .gallery-controls {
+      display: flex;
+      gap: 20px;
+    }
+
+    .gallery-controls button {
+      background: rgba(255,255,255,0.9);
+      color: #333;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .gallery-controls button:hover {
+      background: #fff;
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes fadeUp {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes zoomIn {
+      from {transform: scale(0.5); opacity: 0;}
+      to {transform: scale(1); opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts"></div>
+  <div class="container">
+    <div class="slide active">
+      <img src="foto1.jpg" alt="Foto 1" onclick="openGallery(1)">
+      <button class="gallery-btn" onclick="openGallery(1)">Lihat Foto Lain 📸</button>
+      <h1>Happy 2 Months 💕</h1>
+      <p>Dua bulan bersamamu terasa seperti mimpi yang jadi nyata.<br>
+         Setiap detik, setiap tawa, bahkan setiap diam yang kita lalui bersama<br>
+         adalah hadiah terindah yang aku syukuri.<br>
+         Aku tidak pernah menyangka bisa menemukan rasa nyaman sebesar ini,<br>
+         hanya dengan berada di sampingmu.</p>
+    </div>
+
+    <div class="slide">
+      <img src="foto2.jpg" alt="Foto 2" onclick="openGallery(2)">
+      <button class="gallery-btn" onclick="openGallery(2)">Lihat Foto Lain 📸</button>
+      <h1>Terima Kasih Sayang ✨</h1>
+      <p>Terima kasih, sayang, sudah memilih untuk tinggal di sisiku.<br>
+         Terima kasih sudah mau memahami hal-hal kecil tentangku,<br>
+         bahkan saat aku sulit dimengerti.<br>
+         Dua bulan ini mengajarkanku bahwa cinta bukan hanya tentang kata-kata manis,<br>
+         tapi juga tentang hadir, peduli, dan saling menjaga hati.</p>
+    </div>
+
+    <div class="slide">
+      <img src="foto3.jpg" alt="Foto 3" onclick="openGallery(3)">
+      <button class="gallery-btn" onclick="openGallery(3)">Lihat Foto Lain 📸</button>
+      <h1>Untuk Kita ❤️</h1>
+      <p>Dua bulan ini hanyalah permulaan dari perjalanan yang lebih panjang.<br>
+         Aku ingin kita terus berjalan beriringan,<br>
+         melewati hari-hari indah maupun sulit bersama.<br>
+         Semoga cinta ini selalu tumbuh, bertahan,<br>
+         dan menjadi rumah paling nyaman untuk kita berdua.</p>
+    </div>
+
+    <div class="controls">
+      <button onclick="prevSlide()">⬅ Prev</button>
+      <button onclick="nextSlide()">Next ➡</button>
+    </div>
+
+    <div class="music-control" onclick="toggleMusic()">🔊</div>
+  </div>
+
+  <!-- Modal Galeri -->
+  <div id="galleryModal" class="modal">
+    <span class="close" onclick="closeGallery()">✖</span>
+    <img id="galleryImage" src="">
+    <div class="gallery-controls">
+      <button onclick="prevImage()">⬅</button>
+      <button onclick="nextImage()">➡</button>
+    </div>
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="musik.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    let slides = document.querySelectorAll(".slide");
+    let index = 0;
+    let music = document.getElementById("bgMusic");
+    let isPlaying = false;
+
+    function showSlide(i) {
+      slides.forEach(slide => slide.classList.remove("active"));
+      slides[i].classList.add("active");
+    }
+
+    function nextSlide() {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }
+
+    function prevSlide() {
+      index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+    }
+
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+      } else {
+        music.play();
+      }
+      isPlaying = !isPlaying;
+    }
+
+    window.onload = () => {
+      music.play().catch(()=>{}); 
+      isPlaying = true;
+      launchHearts();
+    }
+
+    // Galeri foto tambahan
+    const galleries = {
+      1: ["foto1a.jpg", "foto1b.jpg", "foto1c.jpg"],
+      2: ["foto2a.jpg", "foto2b.jpg", "foto2c.jpg"],
+      3: ["foto3a.jpg", "foto3b.jpg", "foto3c.jpg"]
+    };
+
+    let currentGallery = [];
+    let currentImageIndex = 0;
+
+    function openGallery(slideNum) {
+      currentGallery = galleries[slideNum];
+      currentImageIndex = 0;
+      showImage();
+      document.getElementById("galleryModal").style.display = "flex";
+    }
+
+    function showImage() {
+      document.getElementById("galleryImage").src = currentGallery[currentImageIndex];
+    }
+
+    function nextImage() {
+      currentImageIndex = (currentImageIndex + 1) % currentGallery.length;
+      showImage();
+    }
+
+    function prevImage() {
+      currentImageIndex = (currentImageIndex - 1 + currentGallery.length) % currentGallery.length;
+      showImage();
+    }
+
+    function closeGallery() {
+      document.getElementById("galleryModal").style.display = "none";
+    }
+
+    // Hati melayang random
+    function launchHearts() {
+      setInterval(() => {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+        document.querySelector(".hearts").appendChild(heart);
+        setTimeout(()=> heart.remove(), 6000);
+      }, 500);
+    }
+  </script>
+</body>
+</html>
+
